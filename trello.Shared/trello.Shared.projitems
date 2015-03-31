@@ -10,6 +10,9 @@
     <Content Include="$(MSBuildThisFileDirectory)js\**\*.js">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)lib\**\*.js">
+      <Link>lib\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Content>
     <None Include="$(MSBuildThisFileDirectory)js\**\*.coffee">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </None>
