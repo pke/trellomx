@@ -1,0 +1,144 @@
+﻿/* Override some crazy defaults from WinJS */
+
+/* Override the sick 400px default from WinJS css*/
+.win-listview, .win-semanticzoom {
+  height: 100%;
+}
+
+button,
+.green {
+    background-color: #70B500; /*green*/
+    color: white;
+    border-color: transparent;
+}
+
+button:hover {
+    background-color: #A2CC5E;
+    border-color: transparent;
+}
+
+button:hover:active {
+    background-color: #3B5E01;
+    color: white;
+}
+
+button.danger {
+    background-color: #C4C9CC;
+    color: rgb(77, 77, 77);
+}
+
+button.danger:hover {
+    background-color: #CF513D;
+    color: white;
+}
+
+.lists .win-hub-section-content {
+    display:-ms-grid;
+    -ms-grid-rows: 1fr auto;
+}
+
+    .lists .win-hub-section-content .cardlist {
+        -ms-grid-row: 1;
+    }
+
+    .lists .win-hub-section-content input.addCard {
+        -ms-grid-row: 2;
+    }
+
+    .lists .cardItem {
+        width: 250px;
+        height: 160px;
+    }
+
+.badges {
+    font-family:"Segoe UI Symbol";
+}
+
+    .badges span {
+        margin-right: 8px;
+    }
+
+    .badges span[data-value='false'],
+    .badges span[data-value='0'],
+    .badges span[data-value='0/0'],
+    .badges span[data-value='null'],
+    .badges span[data-value=''],
+    .badges span.checkItemsChecked {
+        display:none;
+    }
+
+        .badges span:before {
+            padding-right: 4px;
+        }
+
+.badges .comments:before {
+    content: "\e200";
+}
+
+.badges .votes:before {
+    content: "\e209";
+}
+
+.badges .description:before {
+    content: "\e1a2";
+}
+
+.badges .attachments:before {
+    content: "\e16c";
+    padding-right: 0;
+}
+
+.badges .checkItems:before {
+    content: "\e133";
+}
+
+
+.labels {
+    float:right;
+}
+.labels div {
+    margin-right: 4px;
+    width: 20px;
+    height: 4px;
+}
+
+.boardItem {
+    width: 252px;
+    height: 122px;
+    background-size: cover;
+    background-position: 50% 50%;
+}
+
+.boardItem .name {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    text-shadow: 1px 1px black;
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 8px 12px;
+}
+
+.boardItem .fade {
+    background-color: rgba(0,0,0,.15);
+    position: absolute;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.boardItem .fade .icon {
+    position: absolute;
+    right: 10px;
+    font-size: 40pt;
+    bottom: 10px;
+    color:rgba(0,0,0,0.25);
+}
+
+.boardItem .fade .icon[data-icon="undefined"] {
+    display: none;
+}

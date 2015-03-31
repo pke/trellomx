@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>0c55d7e3-67d2-4aff-b355-2f7f47a8c25f</SharedGUID>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)css\shared.css" />
+    <Content Include="$(MSBuildThisFileDirectory)js\**\*.js">
+      <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Content>
+    <None Include="$(MSBuildThisFileDirectory)js\**\*.coffee">
+      <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </None>
+    <Content Include="$(MSBuildThisFileDirectory)pages\**\*">
+      <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Content>
+    <Content Include="pages\**\*">
+      <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Content>
+    <None Include="$(MSBuildThisFileDirectory)pages\**\*.coffee">
+      <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </None>
+    <None Include="pages\**\*.coffee">
+      <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </None>
+    <Content Include="$(MSBuildThisFileDirectory)WinJS\**\*">
+      <Link>WinJS\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)images\**\*" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)strings\en-US\resources.resjson" />
+  </ItemGroup>
+</Project>

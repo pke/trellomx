@@ -1,0 +1,12 @@
+{
+  "name": "trello",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {},
+  "private": true,
+  "author": "",
+  "license": "",
+  "devDependencies": {
+    "coffee-script": "1.9.0"
+  }
+}

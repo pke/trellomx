@@ -1,0 +1,13 @@
+{
+  "name": "pubnubserver",
+  "version": "0.0.0",
+  "description": "pubnubserver",
+  "main": "server.js",
+  "author": {
+    "name": "philk_000",
+    "email": ""
+  },
+  "dependencies": {
+    "pubnub": "~3.7.10"
+  }
+}

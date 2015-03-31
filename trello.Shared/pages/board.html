@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="/pages/board.css" rel="stylesheet" />
+    <script src="/js/lib/pubnub.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/pages/board.js"></script>
+</head>
+<body>
+  <div class="boardPage fragment">
+    <header aria-label="Header content" role="banner">
+      <button class="backbutton" data-win-control="WinJS.UI.BackButton"></button>
+      <h1 class="titlearea win-type-ellipsis">
+        <span class="pagetitle" data-win-bind="textContent:title"></span>
+      </h1>
+      <!--div data-win-control="WinJS.UI.SearchBox"></div-->
+    </header>
+
+    <div class="cardTemplate" data-win-control="WinJS.Binding.Template">
+      <div class="cardItem">
+        <div class="labels" data-win-control="WinJS.UI.Repeater" data-win-bind="winControl.data:labels">
+          <div data-win-bind="style.backgroundColor:color;title:name"></div>
+        </div>
+        <h2 data-win-bind="textContent:name"></h2>
+        <div class="badges" data-win-control="WinJS.UI.Repeater" data-win-bind="winControl.data:badges">
+          <span data-win-bind="textContent:value;className:type;dataset.value:value;title:description"></span>
+        </div>
+      </div>
+    </div>
+
+    <section aria-label="Main content" role="main">
+      <div class="hub lists" data-win-control="WinJS.UI.Hub" data-win-bind="winControl.sections:lists;winControl.items:lists">
+      </div>
+    </section>
+  </div>
+</body>
+</html>

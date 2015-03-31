@@ -1,0 +1,7 @@
+# The real API keys should never be in the repo
+apiKeys.coffee
+
+# And just to make sure the compiled version also
+# does not get commited to the repo if *.js is not
+# ignored globally
+apiKeys.js

@@ -1,0 +1,63 @@
+﻿.win-pivot .win-pivot-surface {
+    height: 75vh;
+}
+
+.win-pivot .win-pivot-viewport {
+    padding-top: 0px;
+    margin-top: 98px;
+}
+
+.win-pivot-item .win-pivot-item-content {
+    padding: 0px;
+}
+
+
+body.phone .boardPage .hub {
+    margin-top: 4px;
+    height: 100%;
+}
+
+.boardPage {
+    background-color: #0079BF;
+    background-size: cover;
+}
+
+.boardPage header[role=banner] {
+    position: relative;
+    z-index: 2;
+}
+
+.boardPage header .win-searchbox {
+    -ms-grid-column:4;
+    margin-top: 37px;
+}
+
+.boardPage section[role=main] {
+    -ms-grid-row: 1;
+    -ms-grid-row-span: 2;
+    z-index: 1;
+}
+
+.boardPage .hub .win-hub-surface {
+    height: 100%;
+}
+
+.label-extralarge {
+	font-size: 28pt;
+	line-height: 30pt;
+}
+
+.label-medium {
+	font-size: 15pt;
+	line-height: 17.5pt;
+}
+
+.label-mediummid {
+	font-size: 15pt;
+	line-height: 17.5pt;
+}
+
+
+.boardPage .cardItem {
+    margin: 4px;
+}

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>trello.Windows</title>
+
+    <!-- WinJS references -->
+    <link href="//Microsoft.WinJS.2.0/css/ui-dark.css" rel="stylesheet" />
+    <script src="//Microsoft.WinJS.2.0/js/base.js"></script>
+    <script src="//Microsoft.WinJS.2.0/js/ui.js"></script>
+
+    <!-- trello references -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <link href="/css/shared.css" rel="stylesheet" />
+    <script src="/js/apiKeys.js"></script>
+    <script src="/js/api.js"></script>
+    <script src="/js/navigator.js"></script>
+    <script src="/js/models/home.js"></script>
+    <script src="/js/default.js"></script>
+</head>
+<body>
+    <div id="contenthost" data-win-control="Application.PageControlNavigator" data-win-options="{home: '/pages/homePage.html'}"></div>
+    <div id="navbar" data-win-control="WinJS.UI.NavBar">
+        <div class="boards" data-win-control="WinJS.UI.NavBarContainer">
+            <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{location:'/pages/homePage.html', label:'Home', icon:'home'}" type="button"></div>
+        </div>
+        <div class="boards" data-win-control="WinJS.UI.NavBarContainer" data-win-options="{data:trello.app.model.boards}">
+        </div>
+    </div>
+</body>
+</html>

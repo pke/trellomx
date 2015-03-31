@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedApp", "SharedApp", "{0EB28711-C912-417F-9F3A-ABFC09FACB61}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "trello.Shared", "trello.Shared\trello.Shared.shproj", "{0C55D7E3-67D2-4AFF-B355-2F7F47A8C25F}"
+EndProject
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "trello.Windows", "trello.Windows\trello.Windows.jsproj", "{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}"
+EndProject
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "trello.WindowsPhone", "trello.WindowsPhone\trello.WindowsPhone.jsproj", "{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}"
+EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "pubnubserver", "pubnubserver\pubnubserver.njsproj", "{056C081D-CCEF-4012-A785-265EC0FE20AF}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		trello.Shared\trello.Shared.projitems*{82bce4f1-bb3a-4fb1-a10d-bca581fd5983}*SharedItemsImports = 5
+		trello.Shared\trello.Shared.projitems*{a12ff800-feaf-412c-8eeb-7e471bfd6e84}*SharedItemsImports = 5
+		trello.Shared\trello.Shared.projitems*{0c55d7e3-67d2-4aff-b355-2f7f47a8c25f}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|ARM.ActiveCfg = Debug|ARM
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|ARM.Build.0 = Debug|ARM
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|ARM.Deploy.0 = Debug|ARM
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|x64.ActiveCfg = Debug|x64
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|x64.Build.0 = Debug|x64
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|x64.Deploy.0 = Debug|x64
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|x86.ActiveCfg = Debug|x86
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|x86.Build.0 = Debug|x86
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Debug|x86.Deploy.0 = Debug|x86
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|ARM.ActiveCfg = Release|ARM
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|ARM.Build.0 = Release|ARM
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|ARM.Deploy.0 = Release|ARM
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|x64.ActiveCfg = Release|x64
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|x64.Build.0 = Release|x64
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|x64.Deploy.0 = Release|x64
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|x86.ActiveCfg = Release|x86
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|x86.Build.0 = Release|x86
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983}.Release|x86.Deploy.0 = Release|x86
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|ARM.ActiveCfg = Debug|ARM
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|ARM.Build.0 = Debug|ARM
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|ARM.Deploy.0 = Debug|ARM
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|x86.ActiveCfg = Debug|x86
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|x86.Build.0 = Debug|x86
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Debug|x86.Deploy.0 = Debug|x86
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|ARM.ActiveCfg = Release|ARM
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|ARM.Build.0 = Release|ARM
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|ARM.Deploy.0 = Release|ARM
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|x64.ActiveCfg = Release|Any CPU
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|x86.ActiveCfg = Release|x86
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|x86.Build.0 = Release|x86
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84}.Release|x86.Deploy.0 = Release|x86
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Release|ARM.ActiveCfg = Release|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Release|x64.ActiveCfg = Release|Any CPU
+		{056C081D-CCEF-4012-A785-265EC0FE20AF}.Release|x86.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0C55D7E3-67D2-4AFF-B355-2F7F47A8C25F} = {0EB28711-C912-417F-9F3A-ABFC09FACB61}
+		{82BCE4F1-BB3A-4FB1-A10D-BCA581FD5983} = {0EB28711-C912-417F-9F3A-ABFC09FACB61}
+		{A12FF800-FEAF-412C-8EEB-7E471BFD6E84} = {0EB28711-C912-417F-9F3A-ABFC09FACB61}
+	EndGlobalSection
+EndGlobal
