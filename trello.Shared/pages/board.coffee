@@ -8,10 +8,10 @@ PUBNUB_demo = PUBNUB.init(
 )
 
 WinJS.UI.Pages.define "/pages/board.html",
-  lists: new WinJS.Binding.List()
   title: "Loading..." #i18n
 
   init: (element, @options = {}) ->
+    @lists = new WinJS.Binding.List()
     id = @options
     if typeof @options is 'string'
       @options = {}
@@ -69,7 +69,6 @@ WinJS.UI.Pages.define "/pages/board.html",
         else
           fragment.style.backgroundImage = ""
         fragment.style.backgroundColor = board.prefs.backgroundColor
-      @lists.splice(0, @lists.length)
       board.lists.forEach (list, index) =>
         section = if WinJS.Utilities.isPhone then new WinJS.UI.PivotItem() else new WinJS.UI.HubSection()
         section.header = list.name
