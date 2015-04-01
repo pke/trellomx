@@ -25,6 +25,7 @@ WinJS.UI.Pages.define "/pages/board.html",
       lists: "open"
       fields: "all"
     )
+    return # Don't wait for the loader!
 
   processed: (element, options) ->
     WinJS.Binding.processAll(element, @)

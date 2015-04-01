@@ -27,6 +27,7 @@ WinJS.Namespace.define "trello.ui",
 WinJS.UI.Pages.define "/pages/homePage.html",
   init: (element, options) ->
     trello.app.model.refreshAsync()
+    return # Don't wait for the promise, displays the page faster
 
   processed: (element, options) ->
 
