@@ -75,6 +75,9 @@ TrelloAPI = WinJS.Class.define (@version, @key, @secret) ->
       # Ignore errors in re-registering webooks
       return
 
+  getWebhooksAsync: () ->
+    @getAsync("/tokens/#{@token}/webhooks")
+
   authorizeAsync: ->
     return WinJS.Promise.as(@token) if @token
 

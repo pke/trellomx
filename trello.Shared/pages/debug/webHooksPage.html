@@ -1,0 +1,38 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <script src="/js/api.js"></script>
+  <script src="/js/i18n.js"></script>
+  <script src="/pages/debug/webHooksPage.js"></script>
+</head>
+<body>
+  <div class="webHooksPage fragment">
+    <header aria-label="Header content" role="banner">
+      <button class="backbutton" data-win-control="WinJS.UI.BackButton"></button>
+      <h1 class="titlearea win-type-ellipsis">
+        <span class="pagetitle">Debug: WebHooks</span>
+      </h1>
+    </header>
+
+    <div class="webHookTemplate" data-win-control="WinJS.Binding.Template">
+      <div class="webHookItem">
+        <h2 data-win-bind="textContent:description"></h2>
+        <h3 data-win-bind="textContent:callbackURL"></h3>
+        <h4 data-win-bind="textContent:idModel"></h4>
+        <div class="win-interactive" data-win-control="WinJS.UI.ToggleSwitch" data-win-options="{}" data-win-bind="winControl.checked:active"></div>
+      </div>
+    </div>
+
+    <section aria-label="Main content" role="main">
+      <div class="list"
+        data-win-control="WinJS.UI.ListView"
+        data-win-options="{
+            itemTemplate: select('.webHookTemplate'),
+            layout: {type: WinJS.UI.ListLayout },
+            itemDataSource: select('.pagecontrol').winControl.items.dataSource
+        }">
+      </div>
+    </section>
+  </div>
+</bod>
+</html>
