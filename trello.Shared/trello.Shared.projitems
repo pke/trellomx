@@ -6,32 +6,36 @@
     <SharedGUID>0c55d7e3-67d2-4aff-b355-2f7f47a8c25f</SharedGUID>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)css\shared.css" />
-    <Content Include="$(MSBuildThisFileDirectory)js\**\*.js">
+    <Content Include="$(MSBuildThisFileDirectory)css\*.css" />
+
+    <Content Include="$(MSBuildThisFileDirectory)js\**\*.js" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.js">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
+    <None Include="$(MSBuildThisFileDirectory)js\**\*.coffee" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.coffee">
+      <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </None>
+
+    <None Include="$(MSBuildThisFileDirectory)js\apiKeys.template.*">
+      <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </None>
+
     <Content Include="$(MSBuildThisFileDirectory)lib\**\*.js">
       <Link>lib\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
-    <None Include="$(MSBuildThisFileDirectory)js\**\*.coffee">
-      <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </None>
-    <Content Include="$(MSBuildThisFileDirectory)pages\**\*">
+
+    <Content Include="$(MSBuildThisFileDirectory)pages\**\*;pages\**\*" Exclude="$(MSBuildThisFileDirectory)pages\**\*.coffee;pages\**\*.coffee">
       <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
-    <Content Include="pages\**\*">
-      <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </Content>
-    <None Include="$(MSBuildThisFileDirectory)pages\**\*.coffee">
+    <None Include="$(MSBuildThisFileDirectory)pages\**\*.coffee;pages\**\*.coffee">
       <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </None>
-    <None Include="pages\**\*.coffee">
-      <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </None>
+
     <Content Include="$(MSBuildThisFileDirectory)WinJS\**\*">
       <Link>WinJS\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
+
     <Content Include="$(MSBuildThisFileDirectory)images\**\*" />
+
     <PRIResource Include="$(MSBuildThisFileDirectory)strings\en-US\resources.resjson" />
   </ItemGroup>
 </Project>
