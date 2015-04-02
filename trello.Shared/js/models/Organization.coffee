@@ -1,18 +1,18 @@
 
-Organization = trello.model.define
-  className: "Organization"
+Organization = trello.model.define "Organization",
+  readOnly: ["id"]
   properties:
-    name: {}
-    displayName: {}
-    desc: {}
-    website: {}
-  validations:
-    atSave: ->
-      @validateLength("displayName", minimum: 1)
-      @validate("displayName", (value) -> value and value[0] != ' ' and value[value.length-1] != ' ')
-      @validateLength("name,desc", maximum: 16384)
-      @validateFormat("website", /^https?:\/\//, "The website URL must start with http:// or https://") #i18n
-    atCreate: ->
+    name:
+      maximumLength: 16384
+    displayName:
+      minimumLength: 1
+      validate: (value) ->
+        value and value[0] != ' ' and value[value.length-1] != ' '
+    desc:
+      maximumLength: 16384
+    website:
+      format: /^https?:\/\//
+      formatMessage: "The website URL must start with http:// or https://" #i18n
 
 WinJS.Namespace.define "trello.app.model",
   Organization: Organization

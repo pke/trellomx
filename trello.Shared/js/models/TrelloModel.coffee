@@ -11,11 +11,13 @@ TrelloModel = WinJS.Class.define (properties = {}) ->
 
 WinJS.Class.mix(TrelloModel, WinJS.Binding.mixin)
 
-define = (options) ->
-  throw new WinJS.ErrorFromName("TrelloModelError", "A className must be given") unless options.className
-  endPointName = options.className.toLowerCase() + "s" # do proper pluralization here?
+define = (className, options) ->
+  throw new WinJS.ErrorFromName("TrelloModelError", "A className must be given") unless className
+
+  endPointName = className.toLowerCase() + "s" # do proper pluralization here?
   return Model = WinJS.Class.derive TrelloModel, (properties) ->
     TrelloModel.apply(@, arguments)
+    @clazz = options
     @_dirty = false
     return
   ,
@@ -30,7 +32,7 @@ define = (options) ->
           @dirty = true
       TrelloModel.prototype.setProperty.apply(@, arguments)
 
-    className: get: -> options.className
+    className: get: -> className
 
     dirty:
       get: -> @_dirty
@@ -45,6 +47,8 @@ define = (options) ->
       result = {}
       Object.keys(properties).forEach((property) ->
         # when "all" is used "undefined" properties are not saved
+        # cause they should only be undefined when the object was newly created.
+        # null is a valid value though.
         # in "changed" mode they are saved as "null"
         value = @[property]
         return if what is "all" and value is undefined
