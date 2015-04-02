@@ -16,12 +16,6 @@ translate = (key, params = {}) ->
 
   key = key.substr(1) if key[0] is ':'
 
-  # Make transition to multiple translation files easier by providing the default "application"
-  # resource map for now
-  #if key.indexOf("/") is -1
-  #  key = "application/#{key}"
-  #  logger.warn("Calling translate w/out qualified resourceId is deprecated.")
-
   params = { count: params } if typeof params == 'number'
   if typeof params?['count'] != 'undefined'
     if params['count'] == 0
