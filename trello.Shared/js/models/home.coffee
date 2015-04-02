@@ -53,7 +53,7 @@ WinJS.Namespace.define "trello.app.model",
     .then (my) ->
       boards.splice(0, boards.length)
       my.boards.forEach (board) ->
-        board.location = "/pages/board.html"
+        board.location = "/pages/boardPage.html"
         board.state = board.id
         board.label = board.name
         boards.push(board)

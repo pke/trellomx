@@ -1,15 +1,8 @@
 # 4d5ea62fd76aa1136000000c - trello dev
-# 545a4dcabd3b29a164b303b3  - JObs
+# 545a4dcabd3b29a164b303b3 - Jobs
 # 54c93f6f836da7c4865460d2 - Agile Board
 
-PUBNUB_demo = PUBNUB.init(
-  publish_key: 'pub-c-0b20bfbc-2c49-4f20-82ac-659d8ebb490c'
-  subscribe_key: 'sub-c-f3c0a50c-d79f-11e4-9532-0619f8945a4f'
-)
-
-WinJS.UI.Pages.define "/pages/board.html",
-  title: "Loading..." #i18n
-
+WinJS.UI.Pages.define "/pages/boardPage.html",
   init: (element, @options = {}) ->
     @lists = new WinJS.Binding.List()
     id = @options
@@ -19,20 +12,19 @@ WinJS.UI.Pages.define "/pages/board.html",
 
     # HACK: use a default board if none given
     # Remove this and display a proper page error message
-    @options["id"] or= "54c93f6f836da7c4865460d2" or "545a4dcabd3b29a164b303b3" or "4d5ea62fd76aa1136000000c"
+    @options["id"] or= "551b25da3abbdf64c940d774" or "54c93f6f836da7c4865460d2" or "545a4dcabd3b29a164b303b3" or "4d5ea62fd76aa1136000000c"
     window.console.debug(@options.id)
-    @loader = trello.api.getPublicAsync("/boards/#{@options.id}",
-      lists: "open"
-      fields: "all"
-    )
+    @loader = trello.api.getBoardAsync(@options.id, lists: "open", fields: "all")
     return # Don't wait for the loader!
 
   processed: (element, options) ->
-    WinJS.Binding.processAll(element, @)
-    .then =>
-      @loader
+    @loader
     .then (board) =>
-      @title = board.name
+      WinJS.Binding.processAll(element,
+        board: board
+        lists: @lists
+      )
+      ###
       if trello.api.loggedIn
         trello.api.createWebhookAsync(
           description: board.name
@@ -56,6 +48,7 @@ WinJS.UI.Pages.define "/pages/board.html",
                     return true
               console.log(m)
           )
+      ###
       if trello.api.loggedIn
         canEditPromise = trello.api.meAsync().then (me) ->
           board.memberships.some (membership) ->
