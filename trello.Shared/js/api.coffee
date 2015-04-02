@@ -8,7 +8,8 @@ if WinJS.Utilities.isPhone
   passwordVault.add(password)
 
 TrelloAPI = WinJS.Class.define (@version, @key, @secret) ->
-  @requestRoot = "https://api.trello.com/#{@version}"
+  @apiRootUrl = "https://api.trello.com/#{@version}"
+  @authorizeUrl = "https://trello.com/#{@version}/authorize"
   passwordCredentials = passwordVault.retrieveAll()
   if passwordCredentials.size and cred = passwordCredentials.getAt(0)
     cred.retrievePassword()
@@ -24,11 +25,14 @@ TrelloAPI = WinJS.Class.define (@version, @key, @secret) ->
       params["token"] or= @token
       @_requestAsync(method, path, params)
 
+  # FIXME: does this need to be an instance method or could be static?
+  _toQueryString: (params) ->
+    queryParams = (Object.keys(params).map (key) -> "#{key}=#{encodeURIComponent(params[key])}").join("&")
+
   _requestAsync: (method, path, params = {}) ->
     params["key"] = @key
     params["token"] or= @token if @token
-    queryParams = (Object.keys(params).map (key) -> "#{key}=#{encodeURIComponent(params[key])}").join("&")
-    url = "#{@requestRoot}#{path}?#{queryParams}"
+    url = "#{@apiRootUrl}#{path}?#{@_toQueryString(params)}"
     WinJS.xhr(url: url, type: method)
     .then (result) ->
       try
@@ -78,18 +82,29 @@ TrelloAPI = WinJS.Class.define (@version, @key, @secret) ->
   getWebhooksAsync: () ->
     @getAsync("/tokens/#{@token}/webhooks")
 
-  authorizeAsync: ->
+  authorizeAsync: (expiration = "never") ->
     return WinJS.Promise.as(@token) if @token
 
-    startUri = new Windows.Foundation.Uri("https://trello.com/#{@version}/authorize?callback_method=fragment&return_url=https%3A%2F%2Fwww.trello.com&scope=read,write,account&expiration=never&name=trello%20Windows%20App&key=#{@key}")
-    # The WAB checks for this URL to understand the authorization process is finished.
+    queryString = @_toQueryString(
+      callback_method: "fragment"
+      return_url: "https://www.trello.com"
+      scope: "read,write,account"
+      expiration: expiration
+      name: "Trello Windows App"
+      key: @key
+    )
+    startUri = new Windows.Foundation.Uri("#{@authorizeUrl}?#{queryString}")
+    # The WAB checks for this URL to understand the authorization process has finished.
     endUri = new Windows.Foundation.Uri("https://trello.com/token")
     # Protect against double calls, by remembering the first call in a promise
     @_authorizing or= Windows.Security.Authentication.Web.WebAuthenticationBroker.authenticateAsync(
       Windows.Security.Authentication.Web.WebAuthenticationOptions.none, startUri, endUri)
     .then (result) =>
       if result.responseStatus is Windows.Security.Authentication.Web.WebAuthenticationStatus.success
+        #FIXME: check for proper token format here
         token = result.responseData.replace("https://trello.com/token=", "")
+
+        #FIXME: Add error handling here with retry-method for potential connection problems
         @getAsync("/members/me", token:token)
         .then (account) =>
           password = new Windows.Security.Credentials.PasswordCredential("trello", account.fullName, @token = token)
