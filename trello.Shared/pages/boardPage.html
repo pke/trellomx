@@ -8,11 +8,12 @@
     <script src="/pages/boardPage.js"></script>
 </head>
 <body>
-  <div class="boardPage fragment">
+  <div class="boardPage fragment" data-win-bind="this['data-color']:board.prefs.background WinJS.Binding.setAttribute">
     <header aria-label="Header content" role="banner">
       <button class="backbutton" data-win-control="WinJS.UI.BackButton"></button>
       <h1 class="titlearea win-type-ellipsis">
         <span class="pagetitle" data-win-bind="textContent:board.name">Loading...</span>
+        <span class="permission" data-win-bind="this['data-level']:board.prefs.permissionLevel WinJS.Binding.setAttribute;textContent:board.prefs.permissionLevel trello.binding.permissionLevel"></span>
       </h1>
       <!--div data-win-control="WinJS.UI.SearchBox"></div-->
     </header>

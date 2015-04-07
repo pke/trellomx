@@ -24,31 +24,35 @@ WinJS.UI.Pages.define "/pages/boardPage.html",
         board: board
         lists: @lists
       )
-      ###
-      if trello.api.loggedIn
-        trello.api.createWebhookAsync(
-          description: board.name
-          idModel: board.id
-          #HACK: Hardcoded hostname:port
-          #See pubnubserver/README.md for details
-          #In the final version the host should be pubnub
-          callbackURL: "http://pfcpille.no-ip.biz:1337/#{board.id}"
-        ).then () =>
-          PUBNUB_demo.subscribe(
-            channel: board.id
-            message: (m) =>
-              if m.action.type is "updateCard"
-                @lists.some (list) ->
-                  if list.listId is m.action.data.list.id
-                    list.cards.some (card) ->
-                      if card.id is m.action.data.card.id
-                        card.pos = m.action.data.card.pos
-                        list.cards.notifyMutated(list.cards.indexOf(card))
-                        return true
-                    return true
-              console.log(m)
-          )
-      ###
+
+      listById = (lists, id) ->
+        found = null
+        lists.some (list) ->
+          found = list if list.idList is id
+        found
+      cardById = (list, id) ->
+        found = null
+        list.some (card) ->
+          found = card if card.id is id
+        found
+      WinJS.Application.addEventListener "notification/#{board.id}", ({action, model}) =>
+        board.performAction?(action, model)
+        if action.type is "updateCard"
+          if action.data.listBefore and action.data.listAfter
+            card = null
+            if oldList = listById(@lists, action.data.listBefore.id)
+              if (index = oldList.cards.indexOf(card = cardById(oldList.cards, action.data.card.id))) isnt -1
+                oldList.cards.splice(index, 1)
+            unless card
+              # Fetch card data from server, if we did not know the card
+              return
+            if newList = listById(@lists, action.data.listAfter.id)
+              newList.cards.push(card)
+          else if action.data.list
+            if list = listById(@lists, action.data.list.id)
+              if card = cardById(list.cards, action.data.card.id)
+                card.pos = action.data.card.pos
+                list.cards.notifyMutated(list.cards.indexOf(card))
       if trello.api.loggedIn
         canEditPromise = trello.api.meAsync().then (me) ->
           board.memberships.some (membership) ->
@@ -62,14 +66,13 @@ WinJS.UI.Pages.define "/pages/boardPage.html",
           fragment.style.backgroundImage = "url(#{board.prefs.backgroundImage})"
         else
           fragment.style.backgroundImage = ""
-        fragment.style.backgroundColor = board.prefs.backgroundColor
       board.lists.forEach (list, index) =>
         section = if WinJS.Utilities.isPhone then new WinJS.UI.PivotItem() else new WinJS.UI.HubSection()
         section.header = list.name
         section.isHeaderStatic = true
         cards = new WinJS.Binding.List(null, binding:true)
         section.cards = cards
-        section.listId = list.id
+        section.idList = list.id
         cards.addEventListener "itemmoved", (event) ->
           card = event.detail.value
           if event.detail.newIndex is 0

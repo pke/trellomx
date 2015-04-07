@@ -142,3 +142,35 @@ button.danger:hover {
 .boardItem .fade .icon[data-icon="undefined"] {
     display: none;
 }
+
+.permission[data-level]:before {
+    padding-right: 4px;
+}
+.permission[data-level="org"]:before {
+    content: "\e125";
+}
+.permission[data-level="private"]:before {
+    content: "\e1f6 ";
+}
+.permission[data-level="public"]:before {
+    content: "\e128 ";
+}
+
+.boardPage[data-color="blue"] {
+    background-color: #0E74AF;
+}
+.boardPage[data-color="green"] {
+    background-color: #379E5A;
+}
+.boardPage[data-color="orange"] {
+    background-color: #CE7822;
+}
+.boardPage[data-color="red"] {
+    background-color: #BF4040;
+}
+.boardPage[data-color="grey"] {
+    background-color: #808080;
+}
+.boardPage[data-color="purple"] {
+    background-color: #8D5C99;
+}

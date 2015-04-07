@@ -1,4 +1,12 @@
 
+pubnub = PUBNUB.init(
+  publish_key: 'pub-c-0b20bfbc-2c49-4f20-82ac-659d8ebb490c'
+  subscribe_key: 'sub-c-f3c0a50c-d79f-11e4-9532-0619f8945a4f'
+)
+
+#FIXME: Do not export this, its currently used in the boardPage for card movement
+WinJS.Namespace.define "trello", pubnub: pubnub
+
 passwordVault = Windows.Security.Credentials.PasswordVault()
 
 #HACK remove this if known how to do Auth continuation properly on WindowsPhone
@@ -6,6 +14,7 @@ if WinJS.Utilities.isPhone
   token = "73207b09afd8dc51cf4db9d5fa7be25244b638877de3c5a839d6221eceecf5af"
   password = new Windows.Security.Credentials.PasswordCredential("trello", "Philipp Kursawe", token)
   passwordVault.add(password)
+
 
 TrelloAPI = WinJS.Class.define (@version, @key, @secret) ->
   @apiRootUrl = "https://api.trello.com/#{@version}"
@@ -65,9 +74,57 @@ TrelloAPI = WinJS.Class.define (@version, @key, @secret) ->
       WinJS.Promise.wrapError(error)
 
   logout: ->
+    # TODO: Unregister all webhooks here, what happens if unregister fails?
+    # What happens if we are offline?
     passwordVault.remove(passwordVault.retrieveAll().getAt(0))
     # No token and no _me promise anymore
     @token = @_me = null
+
+  getBoardAsync: (id, params) ->
+    # TODO:
+    # Give cached version first as quickly as possible.
+    # Then try to fetch an update from the server
+    # if the update differs, update the cached model
+    @getPublicAsync("/boards/#{id}", params)
+    .then (board) =>
+      board = new trello.app.model.Board(board)
+      @watchAsync(board)
+      board.unwatch = @unwatch.bind(@, board)
+      board
+
+  # Saves all registered webhooks by id
+  # With a reference counter. If the refcounter goes to 0, the webhook is deleted
+  _webhooks: {}
+
+  watchAsync: (model) ->
+    webhook = @_webhooks[model.id] or= {}
+    if webhook.refCount
+      webhook.refCount = webhook.refCount + 1
+      return WinJS.Promise.as(webhook)
+    else if @loggedIn #FIXME: After login register for all pending models (where .refCount is undefined)
+      @createWebhookAsync(
+        description: model.name
+        idModel: model.id
+        #HACK: Hardcoded hostname:port
+        #See pubnubserver/README.md for details
+        #In the final version the host should be pubnub
+        callbackURL: "http://pfcpille.no-ip.biz:1337/#{model.id}"
+      ).then () =>
+        webhook.refCount = 1
+        pubnub.subscribe(
+          channel: model.id
+          message: (message) =>
+            WinJS.Application.queueEvent(type: "notification/#{model.id}", model:message.model, action:message.action)
+        )
+        webhook
+    else
+      return WinJS.Promise.as(webhook)
+
+  unwatch: (model) ->
+    if webhook = @_webhooks[model.id]
+      if (webhook.refCount = webhook.refCount - 1) is 0
+        delete @_webhooks[model.id]
+        # TODO: delete webhook
 
   createWebhookAsync: (params) ->
     # FIXME: check if the webhook is already registered and not just always try

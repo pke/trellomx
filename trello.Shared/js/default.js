@@ -34,6 +34,10 @@
       }
       return "url(" + board.prefs.backgroundImageScaled[2].url + ")";
     }),
+
+    permissionLevel: WinJS.Binding.converter(function(permissionLevel) {
+      return i18n.translate("board.permissionLevel." + permissionLevel)
+    }),
   });
 
   // TODO: How are settings handled on the phone?
