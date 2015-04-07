@@ -92,6 +92,12 @@ button.danger:hover {
     content: "\e133";
 }
 
+/* FIXME: Display due badges */
+.badges .due {
+    display: none;
+}
+
+
 
 .labels {
     float:right;
