@@ -3227,7 +3227,7 @@ function xdr( setup ) {
 
             clearTimeout(timer);
 
-            try       { response = JSON['parse'](xhr.responseText); }
+            try { if (xhr === null) return done(1); response = JSON['parse'](xhr.responseText); }
             catch (r) { return done(1); }
 
             success(response);
