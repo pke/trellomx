@@ -22,7 +22,7 @@ WinJS.Namespace.define "trello.ui",
       else if board.id is "add"
         return
       else
-        WinJS.Navigation.navigate("/pages/boardPage.html", item.data.id)
+        trello.show("/boards/#{board.id}")
 
 WinJS.UI.Pages.define "/pages/homePage.html",
   init: (element, options) ->

@@ -113,8 +113,38 @@
             // Optimize the load of the application and while the splash screen is shown, execute high priority scheduled work.
             ui.disableAnimations();
             var p = ui.processAll().then(function () {
-                return nav.navigate(nav.location || Application.navigator.home, nav.state);
+                return new WinJS.Promise(function(c,e,p) {
+                  require(["api", "lib/page", "pubnub"], function (api, page, pubnub) {
+                    // Those cannot be used in Win HTML Apps, causes SecurityException with "about:" URLs
+                    page.Context.prototype.pushState = page.Context.prototype.save = function () { }
+                    WinJS.Namespace.define("trello", {
+                      show: function (path) {
+                        page.show(path);
+                      }
+                    });
+                    page("about:what(.*)", function(context) {
+                      //WinJS.Navigation.navigate("/pages/aboutPage.html", context.params)
+                    });
+                    page("/", function(context) {
+                      WinJS.Navigation.navigate("/pages/homePage.html", context.params)
+                    });
+                    page("/boards/:id", function(context) {
+                      WinJS.Navigation.navigate("/pages/boardPage.html", context.params)
+                    });
+                    page(function(context) {
+                      WinJS.Navigation.navigate("/pages/404.html", context.params)
+                    });
+                    page.start({dispatch:false, click:false});
+                    c.apply(this, arguments);
+                  }, e);
+                });
             }).then(function () {
+              if (args.detail.arguments) {
+                trello.show(args.detail.arguments);
+              } else {
+                return nav.navigate(nav.location || Application.navigator.home, nav.state);
+              }
+            }).then(function() {
                 return sched.requestDrain(sched.Priority.aboveNormal + 1);
             }).then(function () {
                 ui.enableAnimations();
