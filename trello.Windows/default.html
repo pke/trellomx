@@ -31,5 +31,15 @@
         <div class="boards" data-win-control="WinJS.UI.NavBarContainer" data-win-options="{data:trello.app.model.boards}">
         </div>
     </div>
+    <div id="appbar" data-win-control="WinJS.UI.AppBar">
+      <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addBoard', label:'add board', icon:'add' }" type="button"></button>
+      <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'search', label:'search', icon:'find' }" type="button"></button>
+      <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'addList', label:'add list', icon:'add', section:'selection' }" type="button"></button>
+      <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'archiveList', label:'archive this list', icon:'remove', section:'selection' }" type="button"></button>
+      <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'pinUnpin', label:'pin to start', icon:'pin', section:'selection' }" type="button"></button>
+      <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'account', label:'account...', section:'selection' }" href="about:account" type="button"></button>
+      <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'about', label:'about...', section:'selection' }" href="about" type="button"></button>
+    </div>
+
 </body>
 </html>

@@ -4,6 +4,53 @@
 
 WinJS.UI.Pages.define "/pages/boardPage.html",
   init: (element, @options = {}) ->
+    pinUnpin.winControl.onclick = () =>
+      @loader.then (board) ->
+        tile = new Windows.UI.StartScreen.SecondaryTile(board.id,
+          board.name, # i18n
+          "/boards/#{board.id}",
+          new Windows.Foundation.Uri("ms-appx:///images/logo.png"),
+          Windows.UI.StartScreen.TileSize.square310x150)
+        selectionRect = pinUnpin.getBoundingClientRect()
+        buttonCoordinates = { x: selectionRect.left, y: selectionRect.top, width: selectionRect.width, height: selectionRect.height }
+        placement = Windows.UI.Popups.Placement.above
+        if backgroundColor = cssColorToWinRTColor(board.prefs.backgroundColor)
+          tile.visualElements.backgroundColor = backgroundColor
+        tile.visualElements.showNameOnSquare150x150Logo = true
+        tile.visualElements.showNameOnSquare310x150Logo = true
+        tile.visualElements.wide310x150Logo = new Windows.Foundation.Uri("ms-appx:///images/logo.png")
+        require ["ui/TileNotification", "models/ImageMixin"], (TileNotification, ImageMixin) ->
+          args = []
+          getClosest = WinJS.Promise.as(args)
+          if closest = ImageMixin.closestImage(board.prefs.backgroundImageScaled, 310, 150)
+            args.push("TileWide310x150Image")
+            getClosest = WinJS.xhr(
+              type: "HEAD"
+              url: closest.url
+            ).then (request) ->
+              if parseInt(request.getResponseHeader("Content-Length")) > 200*1024
+                args.push(board.prefs.backgroundImageScaled[0].url)
+              else
+                args.push(closest.url)
+                args.push(board.name)
+              args
+          else
+            args.push("TileSquare150x150Text02")
+            args.push(board.name)
+          getClosest.then (args) ->
+            # Create as much as we can before we are suspended on the Phone due to start tile creation
+            tileUpdater = TileNotification.createFromTemplate.apply(@, args).branding("name")
+            updateTile = () ->
+              tileUpdater.updateSecondaryTile(board.id)
+              updateTile = null
+            if WinJS.Utilities.isPhone
+              WinJS.Application.addEventListener "checkpoint", listener = (event) ->
+                WinJS.Application.removeEventListener("checkpoint", listener)
+                updateTile?()
+            tile.requestCreateForSelectionAsync(buttonCoordinates, placement)
+            .then (result) ->
+              updateTile?() if result
+
     @lists = new WinJS.Binding.List()
     id = @options
     if typeof @options is 'string'
