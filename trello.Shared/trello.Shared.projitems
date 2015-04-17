@@ -7,35 +7,28 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)css\*.css" />
-
     <Content Include="$(MSBuildThisFileDirectory)js\**\*.js" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.js">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
     <None Include="$(MSBuildThisFileDirectory)js\**\*.coffee" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.coffee">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </None>
-
     <None Include="$(MSBuildThisFileDirectory)js\apiKeys.template.*">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </None>
-
     <Content Include="$(MSBuildThisFileDirectory)lib\**\*.js">
       <Link>lib\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
-
     <Content Include="$(MSBuildThisFileDirectory)pages\**\*;pages\**\*" Exclude="$(MSBuildThisFileDirectory)pages\**\*.coffee;pages\**\*.coffee">
       <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
     <None Include="$(MSBuildThisFileDirectory)pages\**\*.coffee;pages\**\*.coffee">
       <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </None>
-
     <Content Include="$(MSBuildThisFileDirectory)WinJS\**\*">
       <Link>WinJS\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
-
     <Content Include="$(MSBuildThisFileDirectory)images\**\*" />
-
     <PRIResource Include="$(MSBuildThisFileDirectory)strings\en-US\resources.resjson" />
   </ItemGroup>
 </Project>

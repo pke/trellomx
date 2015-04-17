@@ -51,7 +51,7 @@
     </AppxManifest>
     <None Include=".bin\node.cmd" />
     <Content Include="css\phone.css" />
-    <Content Include="images\SplashScreen.scale-240.png" />
+    <Content Include="speech.grxml">
     <Content Include="packages.config" />
     <Content Include="default.html" />
     <Content Include="css\ui-themed.css" />
