@@ -8,8 +8,9 @@
     <!-- At runtime, ui-themed.css resolves to ui-themed.light.css or ui-themed.dark.css
     based on the user’s theme setting. This is part of the MRT resource loading functionality. -->
     <link href="/css/ui-themed.css" rel="stylesheet" />
-    <script src="/WinJS/js/WinJS.js"></script>
-    <!--script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script-->
+    <!--script src="/WinJS/js/WinJS.js"></script-->
+    <script src="//Microsoft.Phone.WinJS.2.1/js/base.js"></script>
+    <script src="//Microsoft.Phone.WinJS.2.1/js/ui.js"></script>
 
     <!-- trello references -->
     <link href="/css/phone.css" rel="stylesheet" />
@@ -17,10 +18,13 @@
     <script>
         WinJS.Utilities._setIsPhone = true;
     </script>
-    <script src="/js/apiKeys.js"></script>
-    <script src="/js/api.js"></script>
+    <script src="/lib/require.js"></script>
+    <script src="/lib/xrayquire.js"></script>
     <script src="/js/navigator.js"></script>
     <script src="/js/models/home.js"></script>
+    <script src="/js/models/TrelloModel.js"></script>
+    <script src="/js/models/Organization.js"></script>
+    <script src="/js/models/Board.js"></script>
     <script src="/js/default.js"></script>
 </head>
 <body class="phone">

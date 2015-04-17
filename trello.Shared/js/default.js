@@ -1,7 +1,13 @@
-﻿// For an introduction to the Hub/Pivot template, see the following documentation:
-// http://go.microsoft.com/fwlink/?LinkID=392285
-(function () {
+﻿(function () {
   "use strict";
+
+  requirejs.isBrowser = false
+  requirejs.config({
+    baseUrl: "/js",
+    paths: {
+        lib: '../lib'
+    }
+  });
 
   var activation = Windows.ApplicationModel.Activation;
   var app = WinJS.Application;
@@ -87,7 +93,11 @@
   }
 
     app.addEventListener("activated", function (args) {
-        if (args.detail.kind === activation.ActivationKind.launch) {
+        if (args.detail.kind === activation.ActivationKind.webAuthenticationBrokerContinuation) {
+          require(["api"], function(api) {
+            trello.api._onAuthenticated(args.detail.webAuthenticationResult)
+          });
+        } else if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
                 // TODO: This application has been newly launched. Initialize
                 // your application here.
