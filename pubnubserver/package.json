@@ -8,6 +8,7 @@
     "email": ""
   },
   "dependencies": {
-    "pubnub": "~3.7.10"
+    "pubnub": "~3.7.10",
+    "coffee-script": "1.9.0"
   }
 }
