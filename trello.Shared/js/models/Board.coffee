@@ -1,6 +1,9 @@
 
-WinJS.Namespace.define "trello.ui."
 Board = trello.model.define "Board",
+  ctor: (properties) ->
+    WinJS.Application.addEventListener "notification/#{@id}", ({action, model}) =>
+      @performAction?(action, model)
+
   properties:
     name: {}
 
@@ -14,6 +17,14 @@ Board::performAction = (action, model) ->
       else
         @[property] = action.data.board[property]
     , this)
+
+Board::listsAsync = () ->
+  if @lists
+    WinJS.Promise.as(@lists)
+  else
+    trello.api.getBoardAsync(@id, lists: "open", fields: "all")
+    .then (board) =>
+      @lists = board.lists
 
 WinJS.Namespace.define "trello.app.model",
   Board: Board

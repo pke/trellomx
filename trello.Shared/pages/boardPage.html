@@ -8,25 +8,19 @@
     <script src="/pages/boardPage.js"></script>
 </head>
 <body>
-  <div class="boardPage fragment" data-win-bind="this['data-color']:board.prefs.background WinJS.Binding.setAttribute">
+  <div class="boardPage fragment boardColor" data-win-bind="style.backgroundPositionX:backgroundPositionX;this['data-color']:board.prefs.background WinJS.Binding.setAttribute">
     <header aria-label="Header content" role="banner">
       <button class="backbutton" data-win-control="WinJS.UI.BackButton"></button>
       <h1 class="titlearea win-type-ellipsis">
-        <span class="pagetitle" data-win-bind="textContent:board.name">Loading...</span>
+        <span class="pagetitle win-type-ellipsis" data-win-bind="textContent:board.name">Loading...</span>
         <span class="permission" data-win-bind="this['data-level']:board.prefs.permissionLevel WinJS.Binding.setAttribute;textContent:board.prefs.permissionLevel trello.binding.permissionLevel"></span>
       </h1>
       <!--div data-win-control="WinJS.UI.SearchBox"></div-->
     </header>
 
-    <div class="cardTemplate" data-win-control="WinJS.Binding.Template">
-      <div class="cardItem">
-        <div class="labels" data-win-control="WinJS.UI.Repeater" data-win-bind="winControl.data:labels">
-          <div data-win-bind="style.backgroundColor:color;title:name"></div>
-        </div>
-        <h2 data-win-bind="textContent:name"></h2>
-        <div class="badges" data-win-control="WinJS.UI.Repeater" data-win-bind="winControl.data:badges">
-          <span data-win-bind="textContent:value;className:type;dataset.value:value;title:description"></span>
-        </div>
+    <div class="attachmentPreviewTemplate" data-win-control="WinJS.Binding.Template">
+      <div>
+        <img data-win-bind="src:url"/>
       </div>
     </div>
 

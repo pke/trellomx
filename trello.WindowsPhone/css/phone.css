@@ -1,8 +1,4 @@
-﻿#contenthost {
-	background-color: gray;
-}
-
-.fragment header[role=banner] {
+﻿.fragment header[role=banner] {
 	/* Define a grid with columns for the back button and page title. */
 	-ms-grid-columns: 1fr;
 	-ms-grid-rows: 1fr;

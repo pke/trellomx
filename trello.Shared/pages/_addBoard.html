@@ -1,0 +1,28 @@
+<div>
+  <script src="_addBoard.js"></script>
+  <form class="addBoard" data-win-control="WinJS.UI.Flyout">
+    <section>
+      <label for="title">Title</label>
+      <input required name="title" placeholder='Like "Reading Collection" for example'/>
+    </section>
+    <section>
+      <label>Lists</label>
+      <input name="listNames" placeholder="Comma separated names">
+    </section>
+    <section>
+      <label>Organization</label>
+      <select name="organization" data-win-control="WinJS.UI.Repeater" data-win-options="{data:trello.app.model.organizations}">
+        <option data-win-bind="value:id;textContent:displayName"></option>
+      </select>
+    </section>
+    <section>
+      <span>This board will be <select name="permission">
+        <option value="private">private</option>
+        <option disabled value="org">Org visible</option>
+        <option value="public">public</option>
+      </select>.</span>
+    </section>
+    <button type="submit" name="submit" data-win-bind="disabled:invalid">Create Board</button>
+    <div class="error"></div>
+  </form>
+</div>

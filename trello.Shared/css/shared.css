@@ -5,7 +5,16 @@
   height: 100%;
 }
 
-button,
+.win-flyout label {
+    display:block;
+}
+
+.fragment,
+section[role=main] {
+    height: 100%;
+}
+
+.button[type=submit],
 .green {
     background-color: #70B500; /*green*/
     color: white;
@@ -47,7 +56,15 @@ button.danger:hover {
 
     .lists .cardItem {
         width: 250px;
-        height: 160px;
+        height: 110px;
+    }
+
+    .lists .cardItem:not([data-cover='']) {
+        height: 300px;
+    }
+
+    .phone .lists .cardItem {
+      width:auto;
     }
 
 .badges {
@@ -62,8 +79,11 @@ button.danger:hover {
     .badges span[data-value='0'],
     .badges span[data-value='0/0'],
     .badges span[data-value='null'],
-    .badges span[data-value=''],
-    .badges span.checkItemsChecked {
+    .badges span[data-value=''] {
+        display:none;
+    }
+
+    .badges span[data-value='true'] .text {
         display:none;
     }
 
@@ -88,24 +108,30 @@ button.danger:hover {
     padding-right: 0;
 }
 
-.badges .checkItems:before {
+.badges .checkList:before {
     content: "\e133";
 }
 
-/* FIXME: Display due badges */
-.badges .due {
-    display: none;
+.badges .due:before {
+    content: "\e121";
+}
+
+.labels .card-label {
+    float: left;
+}
+
+.labels::after {
+    clear: both;
 }
 
 
-
-.labels {
-    float:right;
-}
-.labels div {
-    margin-right: 4px;
-    width: 20px;
-    height: 4px;
+.label {
+    min-width: 30px;
+    display: block;
+    height: 20px;
+    float: left;
+    padding: 5px 10px;
+    margin: 0 4px 4px 0;
 }
 
 .boardItem {
@@ -113,6 +139,16 @@ button.danger:hover {
     height: 122px;
     background-size: cover;
     background-position: 50% 50%;
+    position: relative;
+}
+
+.boardItem[data-closed=true] {
+    opacity: 0.2;
+}
+
+.phone .boardItem {
+    width: auto;
+    margin-bottom: 20px;
 }
 
 .boardItem .name {
@@ -126,6 +162,12 @@ button.danger:hover {
     bottom: 0;
     left: 0;
     padding: 8px 12px;
+}
+
+.phone .boardItem .name {
+    background-color: rgba(0,0,0,.5);
+    color: white;
+    top: auto;
 }
 
 .boardItem .fade {
@@ -162,21 +204,78 @@ button.danger:hover {
     content: "\e128 ";
 }
 
-.boardPage[data-color="blue"] {
+.boardColor[data-color="blue"] {
     background-color: #0E74AF;
 }
-.boardPage[data-color="green"] {
+.boardColor[data-color="green"] {
     background-color: #379E5A;
 }
-.boardPage[data-color="orange"] {
+.boardColor[data-color="orange"] {
     background-color: #CE7822;
 }
-.boardPage[data-color="red"] {
+.boardColor[data-color="red"] {
     background-color: #BF4040;
 }
-.boardPage[data-color="grey"] {
+.boardColor[data-color="grey"] {
     background-color: #808080;
 }
-.boardPage[data-color="purple"] {
+.boardColor[data-color="purple"] {
     background-color: #8D5C99;
+}
+
+.card-label {
+    background-color: #b6bbbf;
+    color: #fff;
+    display: block;
+    font-weight: 700;
+    margin-right: 3px;
+    height: 20px;
+    min-width: 40px;
+    overflow: hidden;
+    padding: 3px 6px;
+    position: relative;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 5px rgba(0,0,0,.2),0 0 2px #000;
+    white-space: nowrap;
+}
+
+.cardItem .attachments {
+    height: 150px;
+    width: 100%;
+}
+
+/* Don't show colorless labels on cards in lists */
+.cardItem .card-label[data-color=""] {
+    display:none;
+}
+
+.card-label[data-color="green"] {
+    background-color: #70b500;
+}
+.card-label[data-color="yellow"] {
+    background-color: #f2d600;
+}
+.card-label[data-color="orange"] {
+    background-color: #ff9f1a;
+}
+.card-label[data-color="red"] {
+    background-color: #eb5a46;
+}
+.card-label[data-color="purple"] {
+    background-color: #c377e0;
+}
+.card-label[data-color="blue"] {
+    background-color: #0079bf;
+}
+.card-label[data-color="pink"] {
+    background-color: #ff78cb;
+}
+.card-label[data-color="sky"] {
+    background-color: #00c2e0;
+}
+.card-label[data-color="lime"] {
+    background-color: #51e898;
+}
+.card-label[data-color="black"] {
+    background-color: #4d4d4d;
 }

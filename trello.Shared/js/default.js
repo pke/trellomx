@@ -1,6 +1,9 @@
 ﻿(function () {
   "use strict";
 
+  WinJS.validation = true;
+  WinJS.Binding.optimizeBindingReferences = true;
+
   requirejs.isBrowser = false
   requirejs.config({
     baseUrl: "/js",
@@ -27,6 +30,42 @@
   });
 
   WinJS.Namespace.define("trello.binding", {
+    CardLayout: WinJS.Class.define(function (options) {
+      this._site = null;
+      this._surface = null;
+    },
+    {
+      // This sets up any state and CSS layout on the surface of the custom layout
+      initialize: function (site) {
+        this._site = site;
+        this._surface = this._site.surface;
+
+        // Add a CSS class to control the surface level layout
+        WinJS.Utilities.addClass(this._surface, "cardLayout");
+
+        return WinJS.UI.Orientation.vertical;
+      },
+
+      // Reset the layout to its initial state
+      uninitialize: function () {
+        WinJS.Utilities.removeClass(this._surface, "cardLayout");
+        this._site = null;
+        this._surface = null;
+      },
+
+      hittest: function () {
+
+      }
+    }),
+
+    displayBlockIf: WinJS.Binding.converter(function(value) {
+      if (!value) {
+        return "none";
+      } else {
+        return "block"
+      }
+    }),
+
     url: WinJS.Binding.converter(function(value) {
       if (!value) {
         return "none";
@@ -38,11 +77,23 @@
       if (!board || !board.prefs || !board.prefs.backgroundImageScaled) {
         return "none";
       }
-      return "url(" + board.prefs.backgroundImageScaled[2].url + ")";
+      if (board.prefs.backgroundImageScaled.length > 2) {
+        return "url(" + board.prefs.backgroundImageScaled[2].url + ")";
+      } else {
+        return "url(" + board.prefs.backgroundImageScaled[0].url + ")";
+      }
     }),
 
     permissionLevel: WinJS.Binding.converter(function(permissionLevel) {
       return i18n.translate("board.permissionLevel." + permissionLevel)
+    }),
+
+    badgeUpdate: WinJS.Binding.initializer(function (s, sp, d, dp) {
+      s.bind(sp[0], function(value, oldValue) {
+        if (oldValue === undefined) return;
+        WinJS.UI.Animation.updateBadge(d);
+      });
+      return WinJS.Binding.defaultBind(s, sp, d, dp);
     }),
   });
 
@@ -76,8 +127,6 @@
       var accountInvokedhandled = function (command, args) {
         if (args.action === Windows.UI.ApplicationSettings.WebAccountAction.remove) {
           trello.api.logout()
-          // The model should listen to logout itself, and refresh itself
-          trello.app.model.refreshAsync()
         }
       }
       for (var i = 0; i < passwordCredentials.size; i++) {

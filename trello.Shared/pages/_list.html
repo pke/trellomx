@@ -1,16 +1,11 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-</head>
-<body>
-    <div class="cardList"
-        data-win-control="WinJS.UI.ListView"
-        data-win-options="{
-            itemTemplate: select('.cardTemplate'),
-            layout: {type: WinJS.UI.ListLayout },
-            itemsReorderable: false
-        }">
-    </div>
-    <input class="addCard" placeholder="Add a card..." />
-</body>
-</html>
+﻿<div class="cardTemplate" data-win-control="WinJS.Binding.Template" data-win-options="{href:'/pages/_card.html'}"></div>
+
+<div class="cardList"
+    data-win-control="WinJS.UI.ListView"
+    data-win-options="{
+        itemTemplate: select('.cardTemplate'),
+        layout: {type: trello.binding.CardLayout },
+        itemsReorderable: false
+    }">
+</div>
+<input class="addCard" placeholder="Add a card..." />

@@ -1,24 +1,27 @@
 # The base Trello model
 
+# An observable model
 # The ctor accepts an object literal
-TrelloModel = WinJS.Class.define (properties = {}) ->
+ObservableModel = WinJS.Class.define (properties = {}) ->
   unless typeof properties is "object"
-    throw new WinJS.ErrorFromName("TrelloModelError", "ctor properties must be an object")
+    throw new WinJS.ErrorFromName("ObservableModelError", "ctor properties must be an object")
   @_initObservable()
   for own property of properties
     @addProperty(property, properties[property])
   return
 
-WinJS.Class.mix(TrelloModel, WinJS.Binding.mixin)
+WinJS.Class.mix(ObservableModel, WinJS.Binding.mixin)
 
 define = (className, options) ->
   throw new WinJS.ErrorFromName("TrelloModelError", "A className must be given") unless className
 
   endPointName = className.toLowerCase() + "s" # do proper pluralization here?
-  return Model = WinJS.Class.derive TrelloModel, (properties) ->
-    TrelloModel.apply(@, arguments)
+
+  return Model = WinJS.Class.derive ObservableModel, (properties) ->
+    ObservableModel.apply(@, arguments)
     @clazz = options
     @_dirty = false
+    options.ctor?.apply(@, arguments)
     return
   ,
     setProperty: (name, newValue) ->
@@ -30,7 +33,7 @@ define = (className, options) ->
           # Save the old value in the changed properties array
           @changedProperties[name] = @[name]
           @dirty = true
-      TrelloModel.prototype.setProperty.apply(@, arguments)
+      ObservableModel::setProperty.apply(@, arguments)
 
     className: get: -> className
 

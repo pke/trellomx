@@ -6,7 +6,7 @@
   "badges/attachments.one": "This card has one attachment.",
   "badges/attachments": "This card has #{count} attachments.",
   "badges/description": "This card has a description.",
-  "badges/checkItems": "This card has #{checked} of #{count} checklist items completed.",
+  "badges/checkList": "This card has #{checked} of #{count} checklist items completed.",
 
   "publicBoards": "Public Boards",
 
