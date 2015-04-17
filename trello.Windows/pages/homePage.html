@@ -16,16 +16,16 @@
         </header>
 
         <div class="boardItemTemplate" data-win-control="WinJS.Binding.Template">
-          <div class="boardItem" data-win-bind="style.backgroundColor:prefs.backgroundColor;style.backgroundImage:this trello.binding.boardBackgroundImage">
-            <span class="fade"><span class="icon" data-win-bind="textContent:icon;dataset.icon:icon"></span>
+          <div class="boardItem boardColor" data-win-bind="this['data-color']:prefs.background WinJS.Binding.setAttribute;style.backgroundImage:this trello.binding.boardBackgroundImage;this['data-closed']:closed WinJS.Binding.setAttribute">
+            <span class="fade"><span class="icon" data-win-bind="textContent:icon;dataset.icon:icon"></span></span>
             <span class="name" data-win-bind="textContent:name"></span>
           </div>
         </div>
 
         <section aria-label="Main content" role="main">
           <div class="hub" data-win-control="WinJS.UI.Hub" data-win-bind="winControl._sections:trello.app.model.homeSections">
-            <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Your Boards', isHeaderStatic: true}">
-              <div data-win-control="WinJS.UI.ListView" data-win-options="{
+            <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'My Boards', isHeaderStatic: true}">
+              <div class="myBoards" data-win-control="WinJS.UI.ListView" data-win-options="{
                 itemDataSource:trello.app.model.boards.dataSource,
                 itemTemplate: select('.boardItemTemplate'),
                 oniteminvoked: trello.ui.boardInvoked

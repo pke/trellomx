@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="/pages/homePage.css" rel="stylesheet" />
+    <script src="/js/models/home.js"></script>
+    <script src="/pages/homePage.js"></script>
+</head>
+<body>
+    <div class="homePage fragment">
+        <header aria-label="Header content" role="banner">
+            <!--button class="backbutton" data-win-control="WinJS.UI.BackButton"></button-->
+            <h1 class="titlearea win-type-ellipsis">
+                <span class="pagetitle">Trello MX</span>
+            </h1>
+        </header>
+
+        <div class="boardItemTemplate" data-win-control="WinJS.Binding.Template">
+          <div class="boardItem" data-win-bind="this['data-color']:prefs.background WinJS.Binding.setAttribute;style.backgroundImage:this trello.binding.boardBackgroundImage;this['data-closed']:closed WinJS.Binding.setAttribute">
+            <span class="fade"><span class="icon" data-win-bind="textContent:icon;dataset.icon:icon"></span></span>
+            <span class="name" data-win-bind="textContent:name"></span>
+          </div>
+        </div>
+
+        <section aria-label="Main content" role="main">
+          <div class="hub" data-win-control="WinJS.UI.Hub">
+            <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'My Boards', isHeaderStatic: true}">
+              <div class="myBoards" data-win-control="WinJS.UI.Repeater" data-win-options="{data:trello.app.model.boards}">
+                <div data-win-control="WinJS.UI.ItemContainer" data-win-options="{oninvoked: trello.ui.boardInvoked}" data-win-bind="board:this">
+                  <div
+                    class="boardItem boardColor"
+                    data-win-bind="this['data-color']:prefs.background WinJS.Binding.setAttribute;style.backgroundImage:this trello.binding.boardBackgroundImage;this['data-closed']:closed WinJS.Binding.setAttribute">
+                    <span class="fade"><span class="icon" data-win-bind="textContent:icon;dataset.icon:icon"></span></span>
+                    <span class="name" data-win-bind="textContent:name"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Inspiring Boards', isHeaderStatic: true}">
+              <div data-win-control="WinJS.UI.ListView" data-win-options="{
+                itemDataSource:trello.app.model.inspirationBoards.dataSource,
+                itemTemplate: select('.boardItemTemplate'),
+                layout : {type: WinJS.UI.ListLayout },
+                oniteminvoked: trello.ui.boardInvoked
+                }">
+              </div>
+              <button onclick="trello.ui.hideSection(this)">Hide</button>
+            </div>
+            <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Public Boards'}">
+              <div data-win-control="WinJS.UI.ListView" data-win-options="{
+                itemDataSource:trello.app.model.publicBoards.dataSource,
+                itemTemplate: select('.boardItemTemplate'),
+                layout : {type: WinJS.UI.ListLayout },
+                oniteminvoked: trello.ui.boardInvoked
+                }">
+              </div>
+              <button onclick="trello.ui.hideSection(this)">Hide</button>
+            </div>
+          </div>
+        </section>
+    </div>
+</body>
+</html>
