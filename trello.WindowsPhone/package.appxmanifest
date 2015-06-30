@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="trello.Windows" Version="1.0.0.0" Publisher="CN=philk_000" />
-  <mp:PhoneIdentity PhoneProductId="9b9569af-0a7f-4177-b516-5bdb0cc51847" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="pkeit.trellomx" Version="1.0.0.0" Publisher="CN=philk_000" />
+  <mp:PhoneIdentity PhoneProductId="bc03a97a-6add-429c-bd1a-0b79a0ac17da" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>trello.Windows</DisplayName>
-    <PublisherDisplayName>Dude Development</PublisherDisplayName>
+    <DisplayName>pkeit.trellomx</DisplayName>
+    <PublisherDisplayName>pkeit</PublisherDisplayName>
     <Logo>images\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
@@ -16,7 +16,7 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <m3:VisualElements DisplayName="Trello MX" Square150x150Logo="images\logo.png" Square44x44Logo="images\Square44x44Logo.png" Description="Un-Official Trello for Windows Phone" ForegroundText="light" BackgroundColor="#0079BF">
+      <m3:VisualElements DisplayName="Trello MX" Square150x150Logo="images\logo.png" Square44x44Logo="images\Square44x44Logo.png" Description="Un-Official Trello for Windows Phone 8.x" ForegroundText="light" BackgroundColor="#0079BF">
         <m3:LockScreen Notification="badgeAndTileText" BadgeLogo="images\BadgeLogo.png" />
         <m3:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png" Square71x71Logo="images\Square71x71Logo.png">
           <m3:ShowNameOnTiles>

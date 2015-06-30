@@ -49,11 +49,12 @@
     <RequiredPlatformVersion>8.1</RequiredPlatformVersion>
     <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
     <DefaultLanguage>en-US</DefaultLanguage>
-    <PackageCertificateKeyFile>trello_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>trello.Windows_TemporaryKey.pfx</PackageCertificateKeyFile>
     <NuGetPackageImportStamp>125c3e09</NuGetPackageImportStamp>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>C:\Users\philk_000\SkyDrive\dev\trello\</AppxPackageDir>
     <AppxBundlePlatforms>neutral</AppxBundlePlatforms>
+    <PackageCertificateThumbprint>E49B9244A4D26F4099189863F4B3093AF44AA99A</PackageCertificateThumbprint>
   </PropertyGroup>
   <ItemGroup>
     <AppxManifest Include="package.appxmanifest">
@@ -61,6 +62,11 @@
     </AppxManifest>
     <None Include=".bin\node.cmd" />
     <Content Include="default.html" />
+    <None Include="trello.Windows_TemporaryKey.pfx" />
+    <Content Include="images\splashscreen.scale-100.png" />
+    <Content Include="images\splashscreen.scale-140.png" />
+    <Content Include="images\splashscreen.scale-180.png" />
+    <Content Include="voiceCommands.xml" />
     <Content Include="css\default.css" />
     <Content Include="packages.config" />
     <None Include="trello_TemporaryKey.pfx" />
