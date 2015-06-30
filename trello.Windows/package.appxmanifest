@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" StartPage="default.html">
-      <m2:VisualElements DisplayName="Trello" Description="Trello for Windows" ForegroundText="light" BackgroundColor="#0079BF" Square150x150Logo="images\Logo.png" Square30x30Logo="images\SmallLogo.png">
+      <m2:VisualElements DisplayName="Trello MX" Description="Un-Official Trello for Windows" ForegroundText="light" BackgroundColor="#0079BF" Square150x150Logo="images\Logo.png" Square30x30Logo="images\SmallLogo.png">
         <m2:DefaultTile>
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
