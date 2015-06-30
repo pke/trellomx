@@ -1,14 +1,15 @@
 {
-  "name": "pubnubserver",
-  "version": "0.0.0",
-  "description": "pubnubserver",
-  "main": "server.js",
-  "author": {
-    "name": "philk_000",
-    "email": ""
-  },
-  "dependencies": {
-    "pubnub": "~3.7.10",
-    "coffee-script": "1.9.0"
-  }
+    "name": "pubnubserver",
+    "version": "0.0.0",
+    "description": "Proxy for delivering trello notifications to the app",
+    "private": true,
+    "main": "server.js",
+    "author": {
+        "name": "Philipp Kursawe",
+        "email": "phil.kursawe@gmail.com"
+    },
+    "dependencies": {
+        "coffee-script": "1.9.0",
+        "pubnub": "^3.7.12"
+    }
 }
