@@ -52,6 +52,9 @@
     <None Include=".bin\node.cmd" />
     <Content Include="css\phone.css" />
     <Content Include="speech.grxml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="images\**\*" />
     <Content Include="packages.config" />
     <Content Include="default.html" />
     <Content Include="css\ui-themed.css" />
