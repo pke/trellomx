@@ -1,4 +1,4 @@
-define ["apiKeys"], (ApiKeys) ->
+﻿define ["apiKeys"], (ApiKeys) ->
 
   passwordVault = Windows.Security.Credentials.PasswordVault()
 
