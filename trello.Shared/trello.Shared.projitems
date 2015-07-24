@@ -10,9 +10,9 @@
     <Content Include="$(MSBuildThisFileDirectory)js\**\*.js" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.js">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
-    <None Include="$(MSBuildThisFileDirectory)js\**\*.coffee" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.coffee">
+    <CoffeeCompile Include="$(MSBuildThisFileDirectory)js\**\*.coffee" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.coffee">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </None>
+    </CoffeeCompile>
     <None Include="$(MSBuildThisFileDirectory)js\apiKeys.template.*">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </None>

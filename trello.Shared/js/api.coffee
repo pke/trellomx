@@ -1,5 +1,6 @@
 ﻿define ["apiKeys"], (ApiKeys) ->
 
+  isWin10 = Windows.Foundation.Metadata.ApiInformation isnt undefined
   passwordVault = Windows.Security.Credentials.PasswordVault()
 
   TrelloAPI = WinJS.Class.define (options) ->
@@ -187,7 +188,7 @@
       startUri = new Windows.Foundation.Uri("#{@authorizeUrl}?#{queryString}")
       # The WAB checks for this URL to understand the authorization process has finished.
       endUri = new Windows.Foundation.Uri("#{TrelloAPI._wabReturnUrl}/token")
-      if Windows.Security.Authentication.Web.WebAuthenticationBroker.authenticateAndContinue
+      if not isWin10 and Windows.Security.Authentication.Web.WebAuthenticationBroker.authenticateAndContinue
         return WinJS.Promise.as(Windows.Security.Authentication.Web.WebAuthenticationBroker.authenticateAndContinue(startUri, endUri, null, Windows.Security.Authentication.Web.WebAuthenticationOptions.none))
       # Protect against double calls, by remembering the first call in a promise
       @_authorizing or= Windows.Security.Authentication.Web.WebAuthenticationBroker.authenticateAsync(
@@ -205,7 +206,7 @@
   WinJS.Namespace.define "trello",
     api: new TrelloAPI(
       version: 1
-      appName: "Trello Windows App"
+      appName: "Trello MX"
       apiKey: ApiKeys.trello.apiKey
       apiSecret: ApiKeys.trello.apiSecret
       #HACK: Hardcoded hostname:port
