@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license xrayquire 0.0.0 Copyright (c) 2012, The Dojo Foundation All Rights Reserved.
  * Available via the MIT or new BSD license.
  * see: http://github.com/requirejs/xrayquire for details

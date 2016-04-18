@@ -18,7 +18,7 @@
     <Application Id="App" StartPage="default.html">
       <m3:VisualElements DisplayName="Trello MX" Square150x150Logo="images\logo.png" Square44x44Logo="images\Square44x44Logo.png" Description="Un-Official Trello for Windows Phone 8.x" ForegroundText="light" BackgroundColor="#0079BF">
         <m3:LockScreen Notification="badgeAndTileText" BadgeLogo="images\BadgeLogo.png" />
-        <m3:DefaultTile Wide310x150Logo="images\Wide310x150Logo.png" Square71x71Logo="images\Square71x71Logo.png">
+        <m3:DefaultTile Wide310x150Logo="images\WideLogo.png" Square71x71Logo="images\Square71x71Logo.png">
           <m3:ShowNameOnTiles>
             <m3:ShowOn Tile="square150x150Logo" />
           </m3:ShowNameOnTiles>

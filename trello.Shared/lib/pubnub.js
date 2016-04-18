@@ -1,4 +1,4 @@
-// Version: 3.7.10
+﻿// Version: 3.7.10
 var NOW             = 1
 ,   READY           = false
 ,   READY_BUFFER    = []

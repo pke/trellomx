@@ -43,8 +43,7 @@ WinJS.Namespace.define "trello.app.model",
     unless inspirationBoards.length
       trello.api.getPublicAsync("/organizations/54b58957112602c9a0be7aa3/boards")
       .then (boards) ->
-        inspirationBoards.push.apply(inspirationBoards, boards)
-
+        inspirationBoards.push.apply(inspirationBoards, boards.map (board) -> new trello.app.model.Board(board))
     unless publicBoards.length
       randomInt = (min, max) ->
         Math.floor(Math.random() * (max - min + 1)) + min
@@ -69,22 +68,22 @@ WinJS.Namespace.define "trello.app.model",
         organizations: "all"
       ).then (my) ->
         organizations.splice(1, organizations.length - 1, my.organizations...)
-        my.boards.push(
+        my.boards.push(new trello.app.model.Board(
           id: "add"
           name: "Add board..." #i18n
           icon: WinJS.UI.AppBarIcon.add
           prefs:
             backgroundColor: "#70B500"
-        )
+        ))
         return my
     else
       myBoardPromise = WinJS.Promise.as(
-        boards: [
+        boards: [new trello.app.model.Board(
           id: "login"
           name: "Login or register to see your boards" #i18n
           prefs:
             backgroundColor: "#70B500"
-        ]
+        )]
       )
     myBoardPromise
     .then (my) ->
@@ -93,4 +92,4 @@ WinJS.Namespace.define "trello.app.model",
         board.location = "/pages/boardPage.html"
         board.state = board.id
         board.label = board.name
-        boards.push(board)
+        boards.push(new trello.app.model.Board(board))

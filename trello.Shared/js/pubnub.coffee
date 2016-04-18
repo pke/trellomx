@@ -1,4 +1,4 @@
-define ["lib/pubnub", "apiKeys"], (PubNub, ApiKeys) ->
+﻿define ["lib/pubnub", "apiKeys"], (PubNub, ApiKeys) ->
 
   pubnub = PUBNUB.init(ApiKeys.pubnub)
 

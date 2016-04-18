@@ -5,8 +5,10 @@ WinJS.UI.Pages.define "/pages/_addBoard.html",
     permissionSelect = element.querySelector("select[name=permission]")
     organizationSelect.value = "0"
     organizationSelect.onchange = () ->
-      # If the org permission becomes disabled and was selected, then select the first option (private)
-      if permissionSelect.querySelector("option[value=org]").disabled = organizationSelect.value is "0"
+      # If the org permission becomes disabled and was selected,
+      # then select the first option (private)
+      permissionOption = permissionSelect.querySelector("option[value=org]")
+      if permissionOption.disabled = organizationSelect.value is "0"
         if permissionSelect.value is "org"
           permissionSelect.value = permissionSelect.options[0].value
     submitButton = element.querySelector("button[type=submit]")
@@ -29,8 +31,10 @@ WinJS.UI.Pages.define "/pages/_addBoard.html",
         elements.listNames.value.split(",").reduce((lastPromise, listName) ->
           lastPromise.then () ->
             if listName
-              trello.api.postAsync("/boards/#{board.id}/lists", name:listName, pos:"bottom")
-              .then (list) ->
+              trello.api.postAsync("/boards/#{board.id}/lists",
+                name:listName,
+                pos:"bottom"
+              ).then (list) ->
                 board.lists.push(list)
         , WinJS.Promise.as()
         ).then () ->

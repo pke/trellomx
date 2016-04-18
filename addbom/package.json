@@ -1,0 +1,13 @@
+{
+  "name": "addbom",
+  "version": "0.0.0",
+  "description": "addbom",
+  "main": "app.js",
+  "author": {
+    "name": "philk_000",
+    "email": ""
+  },
+  "dependencies": {
+    "glob": "^5.0.14"
+  }
+}

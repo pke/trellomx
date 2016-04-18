@@ -1,4 +1,4 @@
-
+﻿
 ##
 # check if there's a fully qualified key in the resourceMap
 # if so, the concatenated key is returned, otherwise null

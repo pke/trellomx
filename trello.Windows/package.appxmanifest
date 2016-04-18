@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="pkeit.trellomx" Version="1.0.0.6" Publisher="CN=pkeit" />
+  <Identity Name="pkeit.trellomx" Version="1.0.0.11" Publisher="CN=pkeit" />
   <Properties>
     <DisplayName>pkeit.trellomx</DisplayName>
     <PublisherDisplayName>pkeit</PublisherDisplayName>

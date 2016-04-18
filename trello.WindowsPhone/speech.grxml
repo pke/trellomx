@@ -1,0 +1,31 @@
+<grammar xml:lang="en-US"
+         root="createCommands"
+         version="1.0"
+         tag-format="semantics/1.0"
+         xmlns="http://www.w3.org/2001/06/grammar">
+
+  <rule id="createAction">
+    <one-of>
+      <item>create</item>
+      <item>new</item>
+      <item>add</item>
+      <item>archive</item>
+      <item>delete</item>
+    </one-of>
+  </rule>
+
+  <rule id="what">
+    <one-of>
+      <item>board</item>
+      <item>list</item>
+      <item>card</item>
+    </one-of>
+  </rule>
+
+  <rule id="createCommands">
+    <ruleref uri="#createAction"/>
+    <ruleref uri="#what"/>
+    <ruleref uri="grammar:dictation" type="application/srgs+xml"/>
+    <tag>out.SpokenText=rules.latest();</tag>
+  </rule>
+</grammar>

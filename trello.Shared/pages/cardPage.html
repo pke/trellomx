@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="/pages/cardPage.css" rel="stylesheet" />
+    <script src="/js/api.js"></script>
+    <script src="/js/i18n.js"></script>
+    <script src="/pages/cardPage.js"></script>
+</head>
+<body>
+  <div class="cardPage fragment cardColor">
+    <header aria-label="Header content" role="banner">
+      <button class="backbutton" data-win-control="WinJS.UI.BackButton"></button>
+      <h1 class="titlearea win-type-ellipsis">
+        <span class="pagetitle win-type-ellipsis" data-win-bind="textContent:card.name">Loading...</span>
+        <span onclick="trello.ui.moveCard(this)" data-win-bind="card:card"><span>in list </span><span class="" data-win-bind="textContent:card.list.name"></span></span>
+      </h1>
+    </header>
+
+    <section aria-label="Main content" role="main">
+      <div data-win-control="WinJS.UI.Hub">
+        <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: ''}">
+          <label>Description</label>
+          <textarea placeholder="Edit the description" data-win-bind="value:card.desc"></textarea>
+        </div>
+        <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Comments'}">
+          <div class="new-comment">
+            <textarea placeholder="Write a comment..."></textarea>
+          </div>
+          <div class="comments" data-win-control="WinJS.UI.Repeater" data-win-bind="winControl.data:comments">
+            <div class="comment-item">
+              <p data-win-bind="innerHTML:data.text trello.ui.marked"></p>
+            </div>
+          </div>
+        </div>
+        <div data-win-control="WinJS.UI.HubSection" data-win-options="{header: 'Attachments'}">
+
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

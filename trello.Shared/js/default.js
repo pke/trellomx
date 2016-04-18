@@ -1,11 +1,15 @@
-﻿(function () {
+﻿/// <reference path="../../typings/require.d.ts"/>
+/// <reference path="../../typings/winjs.d.ts"/>
+/// <reference path="../../typings/winrt.d.ts"/>
+
+(function () {
   "use strict";
 
   WinJS.validation = true;
   WinJS.Binding.optimizeBindingReferences = true;
 
-  requirejs.isBrowser = false
-  requirejs.config({
+  require.isBrowser = false;
+  require.config({
     baseUrl: "/js",
     paths: {
         lib: '../lib'
@@ -21,13 +25,28 @@
   if (WinJS.Utilities.isPhone) {
     WinJS.UI.Hub = WinJS.UI.Pivot;
     WinJS.UI.HubSection = WinJS.UI.PivotItem;
-  }
 
-  WinJS.Namespace.define("trello.app", {
-    state: WinJS.Binding.define({
-      boards: new WinJS.Binding.List()
-    })
-  });
+    /*var speechRecognizer = new Windows.Media.SpeechRecognition.SpeechRecognizer();
+    var uri = new Windows.Foundation.Uri("ms-appx:///speech.grxml");
+    var storageFile = Windows.Storage.StorageFile.getFileFromApplicationUriAsync(uri)
+    .then(function (srgs) {
+      var grammarfileConstraint = new Windows.Media.SpeechRecognition.SpeechRecognitionGrammarFileConstraint(srgs, "createCommands");
+      speechRecognizer.constraints.append(grammarfileConstraint);
+      speechRecognizer.compileConstraintsAsync();
+    }).then(function () {
+      var listen = function() {
+        speechRecognizer.recognizeAsync()
+        .then(function (result) {
+          console.info(result.text);
+        }, function (error) {
+          console.error("Speech: " + error.message);
+        }).then(function () {
+          WinJS.Promise.timeout().then(listen);
+        });
+      };
+      listen();
+    });*/
+  };
 
   WinJS.Namespace.define("trello.binding", {
     CardLayout: WinJS.Class.define(function (options) {
@@ -62,7 +81,7 @@
       if (!value) {
         return "none";
       } else {
-        return "block"
+        return "block";
       }
     }),
 
@@ -118,10 +137,10 @@
           trello.api.authorizeAsync().done();
       });
       if (!passwordCredentials.size) {
-        args.headerText = "Add your trello account here." //i18n
+        args.headerText = "Add your trello account here."; //i18n
         args.webAccountProviderCommands.append(providerCommand);
       } else {
-        args.headerText = "Manage your trello account here." //i18n
+        args.headerText = "Manage your trello account here."; //i18n
       }
 
       var accountInvokedhandled = function (command, args) {
@@ -144,7 +163,7 @@
     app.addEventListener("activated", function (args) {
         if (args.detail.kind === activation.ActivationKind.webAuthenticationBrokerContinuation) {
           require(["api"], function(api) {
-            trello.api._onAuthenticated(args.detail.webAuthenticationResult)
+            trello.api._onAuthenticated(args.detail.webAuthenticationResult);
           });
         } else if (args.detail.kind === activation.ActivationKind.launch) {
             if (args.detail.previousExecutionState !== activation.ApplicationExecutionState.terminated) {
@@ -179,6 +198,9 @@
                     });
                     page("/boards/:id", function(context) {
                       WinJS.Navigation.navigate("/pages/boardPage.html", context.params)
+                    });
+                    page("/cards/:card", function (context) {
+                      WinJS.Navigation.navigate("/pages/cardPage.html", context.params)
                     });
                     page(function(context) {
                       WinJS.Navigation.navigate("/pages/404.html", context.params)

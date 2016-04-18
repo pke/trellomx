@@ -98,7 +98,7 @@ WinJS.UI.Pages.define "/pages/boardPage.html",
     card.labels = new WinJS.Binding.List(card.labels?.map((label) => @labels[label.id]) or null)
     card.attachmentPreviews = new WinJS.Binding.List()
     #TODO: Cancel this when the board is changed
-    trello.api.getAsync("/cards/#{card.id}/attachments")
+    trello.api.getPublicAsync("/cards/#{card.id}/attachments")
     .then (attachments) ->
       card.attachmentPreviews.push.apply(card.attachmentPreviews, attachments.map((attachment) ->
         attachment.previews[1]
@@ -402,11 +402,11 @@ WinJS.UI.Pages.define "/pages/boardPage.html",
           trello.api.getPublicAsync("/lists/#{list.id}", cards: "open")
           .then (list) =>
             list.cards.forEach (card) =>
+              card.board = board
+              card.list = list
               @_addCardToList(section, card)
 
   unload: () ->
-    @cards = null
-    @labels = null
     document.body.style.backgroundImage = ""
 
   ready: (element, options) ->

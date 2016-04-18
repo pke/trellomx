@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <!--MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>0c55d7e3-67d2-4aff-b355-2f7f47a8c25f</SharedGUID>
+    <SharedGUID>0c55d7e3-67d2-4aff-b355-2f7f47a8c25f</SharedGUID-->
+    <AutoRefresh>true</AutoRefresh>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)css\*.css" />
-    <Content Include="$(MSBuildThisFileDirectory)js\**\*.js" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.js">
-      <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    <Content Include="$(MSBuildThisFileDirectory)css\*.css">
+      <Link>css\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
     <CoffeeCompile Include="$(MSBuildThisFileDirectory)js\**\*.coffee" Exclude="$(MSBuildThisFileDirectory)js\apiKeys.template.coffee">
       <Link>js\%(RecursiveDir)%(FileName)%(Extension)</Link>
@@ -19,16 +19,26 @@
     <Content Include="$(MSBuildThisFileDirectory)lib\**\*.js">
       <Link>lib\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
-    <Content Include="$(MSBuildThisFileDirectory)pages\**\*;pages\**\*" Exclude="$(MSBuildThisFileDirectory)pages\**\*.coffee;pages\**\*.coffee">
+    <Content Include="$(MSBuildThisFileDirectory)pages\**\*.js">
       <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
-    <None Include="$(MSBuildThisFileDirectory)pages\**\*.coffee;pages\**\*.coffee">
+    <Content Include="$(MSBuildThisFileDirectory)pages\**\*.css">
       <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
-    </None>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)pages\**\*.html">
+      <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Content>
+    <CoffeeCompile Include="$(MSBuildThisFileDirectory)pages\**\*.coffee">
+      <Link>pages\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </CoffeeCompile>
     <Content Include="$(MSBuildThisFileDirectory)WinJS\**\*">
       <Link>WinJS\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Content>
-    <Content Include="$(MSBuildThisFileDirectory)images\**\*" />
-    <PRIResource Include="$(MSBuildThisFileDirectory)strings\en-US\resources.resjson" />
+    <Content Include="$(MSBuildThisFileDirectory)images\**\*">
+      <Link>images\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Content>
+    <PRIResource Include="$(MSBuildThisFileDirectory)strings\**\*.resjson">
+      <Link>strings\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </PRIResource>
   </ItemGroup>
 </Project>

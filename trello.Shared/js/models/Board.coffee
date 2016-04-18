@@ -1,4 +1,4 @@
-
+﻿
 Board = trello.model.define "Board",
   ctor: (properties) ->
     WinJS.Application.addEventListener "notification/#{@id}", ({action, model}) =>

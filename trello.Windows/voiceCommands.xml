@@ -1,0 +1,28 @@
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.1">
+
+  <CommandSet xml:lang="en-us" Name="examplevcd">
+    <CommandPrefix>Recognize</CommandPrefix>
+    <Example>Show default speech recognition</Example>
+
+  <Command Name="showRecognition">
+      <Example>Show default recognition</Example>
+      <ListenFor>[Show] {options} {person}</ListenFor>
+      <Feedback>Showing {options} {person}</Feedback>
+      <Navigate/>
+    </Command>
+
+    <PhraseList Label="options">
+      <Item>default recognition</Item>
+      <Item>web search</Item>
+      <Item>list constraint</Item>
+      <Item>file constraint</Item>
+    </PhraseList>
+
+    <PhraseTopic Label="person" Scenario="Search">
+      <Subject>Person Names</Subject>
+    </PhraseTopic>
+  </CommandSet>
+
+  <!-- Other CommandSets for other languages -->
+
+</VoiceCommands>
