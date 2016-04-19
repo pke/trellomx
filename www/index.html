@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="msapplication-tap-highlight" content="no" />
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; object-src *; style-src 'self' data: 'unsafe-inline'; img-src * 'self' data:; media-src 'self' data:; font-src 'self' data:; connect-src *">
+		<title>trello MX</title>
+		<style>
+			html, body {
+				padding: 0;
+				margin:0;
+				height:100%;
+				min-height:100%;
+			}
+			body {
+				font-family: Helvetica;
+				font-size: 14px;
+			}
+			#app {
+				height: 100%;
+			}
+			div, span {
+				box-sizing: border-box;
+				position: relative;
+				border: 0 solid black;
+				margin: 0;
+				padding: 0;
+				display: flex;
+				flex-direction: column;
+				align-items: stretch;
+				justify-content: flex-start;
+				flex-shrink: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="bundle.js" async></script>
+	</body>
+</html>

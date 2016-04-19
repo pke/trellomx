@@ -1,12 +1,49 @@
 {
-  "name": "trello",
+  "name": "trello-mx",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {},
-  "private": true,
-  "author": "",
-  "license": "",
+  "description": "A modern trello client",
+  "main": "index.js",
+  "scripts": {
+    "develop": "webpack-dev-server --inline --hot --history-api-fallback --content-base ./www/",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "trello"
+  ],
+  "author": "phil.kursawe@gmail.com",
+  "license": "MIT",
   "devDependencies": {
-    "coffee-script": "1.9.0"
+    "babel-core": "^6.4.5",
+    "babel-eslint": "^6.0.0-beta.2",
+    "babel-loader": "^6.2.2",
+    "babel-plugin-syntax-object-rest-spread": "^6.5.0",
+    "babel-plugin-transform-object-rest-spread": "^6.5.0",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-react-hmre": "^1.1.1",
+    "eslint": "^2.7.0",
+    "eslint-loader": "^1.2.1",
+    "eslint-plugin-import": "^1.4.0",
+    "eslint-plugin-react": "^4.3.0",
+    "json-loader": "^0.5.4",
+    "webpack": "^1.12.15",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.7.3"
+  },
+  "dependencies": {
+    "history": "^2.0.0",
+    "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.12.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1",
+    "react-redux": "^4.4.5",
+    "react-router": "^2.2.4",
+    "react-router-redux": "^4.0.2",
+    "react-router-transition": "0.0.5",
+    "redux": "^3.4.0",
+    "redux-logger": "^2.6.1",
+    "redux-saga": "^0.9.5",
+    "reselect": "^2.3.0"
   }
 }

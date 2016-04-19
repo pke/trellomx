@@ -4,6 +4,7 @@
 AppXPackages
 BundleArtifacts
 .bin/
+www/bundle.js
 
 # User-specific files
 *.suo
