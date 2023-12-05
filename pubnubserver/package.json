@@ -10,6 +10,6 @@
     },
     "dependencies": {
         "coffee-script": "1.9.0",
-        "pubnub": "^3.7.12"
+        "pubnub": "^7.4.0"
     }
 }
